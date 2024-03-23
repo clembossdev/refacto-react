@@ -1,4 +1,4 @@
-import { getDomains } from "./selectors";
+import { getDomains, getGroupedDomains } from "./selectors";
 import { AppState } from "../store";
 
 
@@ -19,6 +19,18 @@ describe('selectors', () => {
         'SU_PE-RTE',
         'ST_TE_STT'
       ])
+    })
+  })
+
+  describe('getGroupedDomains', () => {
+    it('should return the grouped domains', () => {
+      const domains = getGroupedDomains(state);
+
+      expect(domains).toEqual({
+        countries: [ 'SU', 'ST' ],
+        classifications: [ 'PE', 'TE' ],
+        subClassifications: [ 'RTE', 'STT' ]
+      })
     })
   })
 })
